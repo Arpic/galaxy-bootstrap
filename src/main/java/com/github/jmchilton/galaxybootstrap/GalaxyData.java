@@ -27,7 +27,7 @@ public class GalaxyData {
   
   public static class User {
     private String username;
-    private String publicUsername = UUID.randomUUID().toString(); // default random public username
+    private String publicUsername = "name-" + UUID.randomUUID().toString(); // default random public username
     private String password = "123456";
     private String apiKey = UUID.randomUUID().toString();
 
