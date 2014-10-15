@@ -27,6 +27,7 @@ public class GalaxyData {
   
   public static class User {
     private String username;
+    private String publicUsername = UUID.randomUUID().toString(); // default random public username
     private String password = "123456";
     private String apiKey = UUID.randomUUID().toString();
 
@@ -40,6 +41,14 @@ public class GalaxyData {
 
     public void setUsername(String username) {
       this.username = username;
+    }
+
+    public String getPublicUsername() {
+      return publicUsername;
+    }
+
+    public void setPublicUsername(String publicUsername) {
+      this.publicUsername = publicUsername;
     }
 
     public String getPassword() {
@@ -80,11 +89,13 @@ public class GalaxyData {
         line.append("', '");
         line.append(user.password);
         line.append("', '");
+        line.append(user.publicUsername);
+        line.append("', '");
         line.append(user.apiKey);
         line.append("')\n");
         scriptBuilder.append(line);
         
-        logger.debug("Adding user: " + line);
+        logger.debug("Adding user: (username, password, publicUsername, apiKey)=" + line);
       }
       charSink.write(scriptBuilder);
     } catch(final IOException ioException) {
